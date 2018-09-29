@@ -1,0 +1,41 @@
+name:                modular
+version:             0.1.0.0
+github:              "cohei/modular"
+license:             BSD3
+author:              "TANIGUCHI Kohei"
+maintainer:          "a.d.xvii.kal.mai@gmail.com"
+copyright:           "2018 TANIGUCHI Kohei"
+
+extra-source-files:
+  - README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/cohei/modular#readme>
+
+dependencies:
+  - base >= 4.7 && < 5
+  - mtl
+  - reflection
+
+library:
+  source-dirs: src
+
+tests:
+  modular-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wall
+      - -Werror
+    dependencies:
+      - modular
+      - hspec
