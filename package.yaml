@@ -18,6 +18,20 @@ extra-source-files:
 # common to point users to the README.md file.
 description:         Please see the README on GitHub at <https://github.com/cohei/modular#readme>
 
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-export-lists
+  - -Wmissing-home-modules
+  - -Wmissing-import-lists
+  - -Wmissing-local-signatures
+  - -Wmonomorphism-restriction
+  - -Wpartial-fields
+  - -Wredundant-constraints
+
 dependencies:
   - base >= 4.7 && < 5
   - mtl

@@ -1,7 +1,7 @@
 {-# LANGUAGE DataKinds     #-}
 {-# LANGUAGE TypeOperators #-}
 import           Data.Reflection  (give)
-import           GHC.TypeLits
+import           GHC.TypeLits     (type (^), type (+))
 import           Test.Hspec       (describe, hspec, it, shouldBe)
 
 import           ReaderMonad      (unModular)
