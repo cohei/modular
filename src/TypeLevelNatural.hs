@@ -1,23 +1,24 @@
-{-# LANGUAGE DataKinds      #-}
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE TypeAbstractions #-}
 {-# LANGUAGE TypeApplications #-}
-module TypeLevelNatural (Modular(unModular)) where
 
-import           Data.Ratio   (denominator, numerator)
-import           GHC.TypeLits (KnownNat, Nat, natVal)
+module TypeLevelNatural (Modular (unModular)) where
 
-import           Reciprocal   (modularReciprocal)
+import Data.Ratio (denominator, numerator)
+import GHC.TypeLits (KnownNat, Nat, natVal)
 
-newtype Modular a (modulus :: Nat) =
-  Modular { unModular :: a }
+import Reciprocal (modularReciprocal)
+
+newtype Modular a (modulus :: Nat)
+  = Modular {unModular :: a}
   deriving (Eq)
 
-instance Show a => Show (Modular a modulus) where
+instance (Show a) => Show (Modular a modulus) where
   show (Modular n) = show n
 
 instance (Integral a, KnownNat modulus) => Num (Modular a modulus) where
-  fromInteger           = toModular . fromInteger
+  fromInteger = toModular . fromInteger
   Modular n + Modular m = toModular $ n + m
   Modular n * Modular m = toModular $ n * m
   negate (Modular n)    = toModular $ negate n

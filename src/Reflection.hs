@@ -1,20 +1,21 @@
 {-# LANGUAGE FlexibleContexts #-}
-module Reflection (Modular(unModular)) where
 
-import           Data.Ratio      (denominator, numerator)
-import           Data.Reflection (Given (given))
+module Reflection (Modular (unModular)) where
 
-import           Reciprocal      (modularReciprocal)
+import Data.Ratio (denominator, numerator)
+import Data.Reflection (Given (given))
 
-newtype Modular a =
-  Modular { unModular :: a }
+import Reciprocal (modularReciprocal)
+
+newtype Modular a
+  = Modular {unModular :: a}
   deriving (Eq)
 
-instance Show a => Show (Modular a) where
+instance (Show a) => Show (Modular a) where
   show (Modular n) = show n
 
 instance (Given a, Integral a) => Num (Modular a) where
-  fromInteger           = toModular . fromInteger
+  fromInteger = toModular . fromInteger
   Modular n + Modular m = toModular $ n + m
   Modular n * Modular m = toModular $ n * m
   negate (Modular n)    = toModular $ negate n

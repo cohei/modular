@@ -1,18 +1,20 @@
-{-# LANGUAGE DataKinds     #-}
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE TypeOperators #-}
-import           Data.Reflection  (give)
-import           GHC.TypeLits     (type (^), type (+))
-import           Test.Hspec       (describe, hspec, it, shouldBe)
 
-import           ReaderMonad      (unModular)
-import qualified ReaderMonad      as RM (Modular)
-import qualified Reflection       as Ref (Modular)
-import qualified TypeLevelNatural as TL (Modular)
+import Data.Reflection (give)
+import GHC.TypeLits (type (+), type (^))
+import Test.Hspec (describe, hspec, it, shouldBe)
 
-modulus :: Num a => a
+import ReaderMonad (unModular)
+import ReaderMonad qualified as RM (Modular)
+import Reflection qualified as Ref (Modular)
+import TypeLevelNatural qualified as TL (Modular)
+
+modulus :: (Num a) => a
 modulus = 10 ^ (9 :: Int) + 7
 
-n :: Num a => a
+n :: (Num a) => a
 n = 10 ^ (30 :: Int)
 
 main :: IO ()
@@ -29,13 +31,17 @@ main = hspec $ do
 
   describe "Reflection" $ do
     it "with Int" $
-      give (modulus :: Int) $ (n :: Ref.Modular Int) `shouldBe` 999657007
+      give (modulus :: Int) $
+        (n :: Ref.Modular Int) `shouldBe` 999657007
     it "with Integer" $
-      give (modulus :: Integer) $ (n :: Ref.Modular Integer) `shouldBe` 999657007
+      give (modulus :: Integer) $
+        (n :: Ref.Modular Integer) `shouldBe` 999657007
     it "handle negative number" $
-      give (7 :: Int) $ (-1 :: Ref.Modular Int) `shouldBe` 6
+      give (7 :: Int) $
+        (-1 :: Ref.Modular Int) `shouldBe` 6
     it "calculate reciprocal" $
-      give (11 :: Int) $ (recip 7 :: Ref.Modular Int) `shouldBe` 8
+      give (11 :: Int) $
+        (recip 7 :: Ref.Modular Int) `shouldBe` 8
 
   describe "Type-level Natural" $ do
     it "with Int" $
