@@ -1,5 +1,7 @@
 {-# LANGUAGE DataKinds      #-}
 {-# LANGUAGE KindSignatures #-}
+{-# LANGUAGE TypeAbstractions #-}
+{-# LANGUAGE TypeApplications #-}
 module TypeLevelNatural (Modular(unModular)) where
 
 import           Data.Ratio   (denominator, numerator)
@@ -27,4 +29,4 @@ instance (Integral a, KnownNat modulus) => Fractional (Modular a modulus) where
   fromRational r = fromInteger (numerator r) / fromInteger (denominator r)
 
 toModular :: (Integral a, KnownNat modulus) => a -> Modular a modulus
-toModular n = let m = Modular $ n `mod` fromInteger (natVal m) in m
+toModular @_ @modulus n = Modular $ n `mod` fromInteger (natVal @modulus undefined)

@@ -1,6 +1,5 @@
 module ReaderMonad (Modular, unModular) where
 
-import           Control.Applicative  (liftA2)
 import           Control.Monad.Reader (Reader, ask, runReader)
 import           Data.Ratio           (denominator, numerator)
 
