@@ -1,3 +1,3 @@
 # modular
 
-[![CircleCI](https://circleci.com/gh/cohei/modular.svg?style=svg)](https://circleci.com/gh/cohei/modular)
+[![CI](https://github.com/cohei/modular/actions/workflows/ci.yml/badge.svg)](https://github.com/cohei/modular/actions/workflows/ci.yml)
