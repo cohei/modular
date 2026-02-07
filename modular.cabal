@@ -1,4 +1,4 @@
-cabal-version: 3.4
+cabal-version: 3.8
 name: modular
 version: 0.1.0.0
 description: Please see the README on GitHub at <https://github.com/cohei/modular#readme>
@@ -9,7 +9,6 @@ maintainer: a.d.xvii.kal.mai@gmail.com
 copyright: 2018 TANIGUCHI Kohei
 license: BSD-3-Clause
 license-file: LICENSE
-build-type: Simple
 extra-source-files:
   README.md
 
@@ -34,14 +33,12 @@ common common-options
 
 library
   import: common-options
+  hs-source-dirs: src
   exposed-modules:
     ReaderMonad
     Reciprocal
     Reflection
     TypeLevelNatural
-
-  hs-source-dirs:
-    src
 
   build-depends:
     base >=4.7 && <5,
@@ -50,11 +47,8 @@ library
 
 test-suite modular-test
   import: common-options
-  type: exitcode-stdio-1.0
+  hs-source-dirs: test
   main-is: Spec.hs
-  hs-source-dirs:
-    test
-
   ghc-options:
     -threaded
     -rtsopts
